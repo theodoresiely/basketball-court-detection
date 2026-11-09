@@ -1,0 +1,10 @@
+# configs/corrected.yaml with the "layer3" backbone features:
+# layer3 is trained as well (its ImageNet weights are more specific to photos than layer2's).
+data:
+  corrections: data/review/corrections.json
+  decisions: data/review/decisions.json
+model:
+  backbone_features: layer3
+  trainable_layers: [layer2, layer3]
+train:
+  lr: 3.0e-4

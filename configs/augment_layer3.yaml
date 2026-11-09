@@ -1,0 +1,18 @@
+# configs/backbone_layer3.yaml + online augmentations of the training crops:
+# the 8 symmetries of the square, colour jitter and some grey-level crops. Values fixed before any
+# result, close to YOLO's defaults (hsv_v 0.4, hsv_s 0.7), not tuned. 30 epochs: with 20 the run had not
+# converged. Reference model: runs/augment_layer3_e30_lr3e-4/best.pt.
+data:
+  corrections: data/review/corrections.json
+  decisions: data/review/decisions.json
+  aug_dihedral: true
+  aug_brightness: 0.3
+  aug_contrast: 0.3
+  aug_saturation: 0.5
+  aug_gray: 0.1
+model:
+  backbone_features: layer3
+  trainable_layers: [layer2, layer3]
+train:
+  lr: 3.0e-4
+  epochs: 30

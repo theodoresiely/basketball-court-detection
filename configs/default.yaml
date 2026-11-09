@@ -1,0 +1,82 @@
+model:
+  pretrained_backbone: true
+  trainable_layers:
+  - layer2
+  backbone_features: layer2
+  anchors:
+    sizes:
+    - 32.0
+    - 48.0
+    - 64.0
+    - 96.0
+    - 128.0
+    - 192.0
+    aspect_ratios:
+    - 0.5
+    - 1.0
+    - 2.0
+  rpn:
+    pos_iou_thresh: 0.7
+    neg_iou_thresh: 0.3
+    num_samples: 256
+    positive_fraction: 0.5
+    smooth_l1_beta: 0.1111111111111111
+    reg_weight: 1.0
+    nms_thresh: 0.7
+    pre_nms_top_n_train: 2000
+    post_nms_top_n_train: 2000
+    pre_nms_top_n_test: 1000
+    post_nms_top_n_test: 1000
+    mid_channels: 256
+  roi:
+    roi_output_size: 7
+    sampling_ratio: 2
+    aligned: true
+    hidden_dim: 1024
+    pos_iou_thresh: 0.5
+    num_samples: 128
+    positive_fraction: 0.25
+    box_weights:
+    - 10.0
+    - 10.0
+    - 5.0
+    - 5.0
+    smooth_l1_beta: 0.1111111111111111
+    reg_weight: 1.0
+    score_thresh: 0.05
+    nms_thresh: 0.5
+    detections_per_img: 100
+data:
+  root: dataset/basket_dataset.coco
+  train_split: train
+  val_split: valid
+  crop_size: 512
+  tol: 0.85
+  p_pos: 1.0
+  max_tries: 20
+  batch_size: 8
+  num_workers: 2
+  corrections: null
+  decisions: null
+  source_a_fraction: 1.0
+  subset_seed: 0
+  aug_dihedral: false
+  aug_brightness: 0.0
+  aug_contrast: 0.0
+  aug_saturation: 0.0
+  aug_gray: 0.0
+train:
+  epochs: 20
+  optimizer: adam
+  lr: 0.001
+  momentum: 0.9
+  weight_decay: 0.0
+  plateau_factor: 0.1
+  plateau_patience: 3
+  grad_clip_norm: null
+  seed: 0
+  val_seed: 1234
+  device: auto
+  log_every: 20
+  eval_every: 1
+  select_metric: ap

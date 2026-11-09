@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "courtdet"
+version = "0.1.0"
+description = "Faster R-CNN built step by step for basketball court detection in satellite imagery"
+requires-python = ">=3.10"
+# Kept minimal on purpose: dependencies are added when the code that needs them is written.
+dependencies = ["torch", "torchvision", "numpy", "Pillow", "PyYAML"]
+
+[project.optional-dependencies]
+dev = ["pytest", "pycocotools"]  # pycocotools: reference AP, used by the tests only
+yolo = ["ultralytics==8.4.194"]  # baseline only (scripts/train_yolo.py, predict_yolo.py); AGPL-3.0
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

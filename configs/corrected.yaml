@@ -1,0 +1,5 @@
+# Default config + human review of source A:
+# corrected valid/test boxes, and source A images sorted "multiple"/"unsure" left uncorrected are dropped.
+data:
+  corrections: data/review/corrections.json
+  decisions: data/review/decisions.json

@@ -1,0 +1,24 @@
+# data and training outputs
+/data/
+/dataset/
+/runs/
+/checkpoints/
+*.pth
+*.pt
+
+# python
+__pycache__/
+*.egg-info/
+.pytest_cache/
+
+# misc
+.DS_Store
+Miniconda3-*.sh
+
+# kept local, not published
+/reference/
+/CLAUDE.md
+/.claude/
+
+# project notebook, kept local
+/docs/
